@@ -11,20 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('seats', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('product_id');
-            $table->string('title', 20)->unique();
-            $table->string('quantity', 50);
-            $table->string('unit_price', 50);
-            $table->string('total_price', 50);
+            $table->string('seat_number')->unique();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
-            //products relation
-            $table->foreign('product_id')->references('id')->on('products')
-            ->restrictOnDelete()->cascadeOnUpdate();
-
-
         });
     }
 
@@ -33,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sale_transactions');
+        Schema::dropIfExists('seats');
     }
 };

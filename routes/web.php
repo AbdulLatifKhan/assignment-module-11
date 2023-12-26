@@ -1,11 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SalesController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\AddProductController;
-use App\Http\Controllers\SaleTransactionController;
+use App\Http\Controllers\TripController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LocationController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,16 +19,17 @@ use App\Http\Controllers\SaleTransactionController;
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function(){
 
-    Route::get('/home',[DashboardController::class, 'home'])->name('home');
-   
-    Route::get('/product',[ProductController::class, 'product'])->name('product');
-    Route::get('/priceUpdate/{id}',[ProductController::class, 'priceUpdate'])->name('priceUpdate');
-    Route::post('/updatePriceStore',[ProductController::class, 'updatePriceStore'])->name('updatePriceStore');
+    Route::get('/home',[TripController::class, 'index'])->name('home.index');
+    Route::get('/trip/create',[TripController::class, 'create'])->name('trip.create');
+    Route::post('/trip/store',[TripController::class, 'store'])->name('trip.store');
+    Route::get('/trip',[TripController::class, 'searchBus'])->name('trip.searhBus');
+   Route::post('/users',[UserController::class, 'store'])->name('users.store');
 
-    Route::get('/product/create',[ProductController::class, 'create'])->name('product.create');
-    Route::post('/product/store',[ProductController::class, 'store'])->name('product.store');
+   Route::get('/location',[LocationController::class, 'create'])->name('location.create');
+   Route::post('/location',[LocationController::class, 'store'])->name('location.store');
+  
+
+    
 
 
-    Route::get('/sales',[SalesController::class, 'sales'])->name('sales');
-    Route::post('/salesStore',[SalesController::class, 'store'])->name('sales.store');
 });

@@ -1,24 +1,15 @@
+use App\Http\Controllers\TripController;
 <div class="app-menu navbar-menu">
     <!-- LOGO -->
-    <div class="navbar-brand-box">
+    <div class="navbar-brand-box ">
       <!-- Dark Logo-->
-      <a href="index.html" class="logo logo-dark">
-        <span class="logo-sm">
-          <img src="{{ asset('assets/images')}}/logo-sm.png" alt="" height="22" />
-        </span>
-        <span class="logo-lg">
-          <img src="{{ asset('assets/images')}}/logo-dark.png" alt="" height="17" />
-        </span>
+      <a href="{{ route('admin.home.index') }}" class="logo logo-dark">
+        <p class="h1 pt-3 fw-bolder">
+          Tiki
+        </p>
       </a>
-      <!-- Light Logo-->
-      <a href="index.html" class="logo logo-light">
-        <span class="logo-sm">
-          <img src="{{ asset('assets/images')}}/logo-sm.png" alt="" height="22" />
-        </span>
-        <span class="logo-lg">
-          <img src="{{ asset('assets/images')}}/logo-light.png" alt="" height="17" />
-        </span>
-      </a>
+    
+
       <button
         type="button"
         class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -37,29 +28,24 @@
           <li class="menu-title"><span data-key="t-menu">Menu</span></li>
 
           <li class="nav-item">
-            <a class="nav-link menu-link" href="{{ route('admin.home') }}"  aria-controls="sidebarDashboards">
+            <a href="{{ route('admin.home.index') }}" class=" {{ request()->routeIs('admin.home.index')? 'active' : '' }} nav-link menu-link"  aria-controls="sidebarDashboards">
               <i data-feather="home" class="icon-dual"></i>
-              <span data-key="t-dashboards" class="">Dashboard</span>
+              <span data-key="t-dashboards" class="fs-5">Dashboard</span>
+            </a>
+          </li>
+
+
+          <li class="nav-item btn-success">
+            <a href="{{ route('admin.trip.create')}}" class="{{ request()->routeIs('admin.trip.create')? 'active' : '' }}  nav-link menu-link " >
+              <i data-feather="box" class="icon-dual"></i>
+              <span data-key="t-dashboards" class="fs-5">Add Trip</span>
             </a>
           </li>
 
           <li class="nav-item btn-success">
-            <a class="nav-link menu-link " href="{{ route('admin.product') }}" aria-expanded="false">
-              <i data-feather="box" class="icon-dual"></i>
-              <span data-key="t-dashboards">Products List</span>
-            </a>
-          </li>
-          <li class="nav-item btn-success">
-            <a class="nav-link menu-link " href="{{ route('admin.product.create') }}" aria-expanded="false">
-              <i data-feather="box" class="icon-dual"></i>
-              <span data-key="t-dashboards">Add Products</span>
-            </a>
-          </li>
-
-          <li class="nav-item btn-success">
-            <a class="nav-link menu-link " href="{{ route('admin.sales') }}" aria-expanded="false">
+            <a  href="{{route('admin.location.create')}}" class="{{ request()->routeIs('admin.location.create')? 'active' : '' }}  nav-link menu-link " >
               <i data-feather="dollar-sign" class="icon-dual"></i>
-              <span data-key="t-dashboards">Transaction History</span>
+              <span data-key="t-dashboards" class="fs-5">Add Location</span>
             </a>
           </li>
           <!-- end Dashboard Menu -->

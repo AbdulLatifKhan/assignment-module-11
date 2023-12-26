@@ -13,7 +13,7 @@
               <div class="col-12">
                   <div class="d-flex align-items-lg-center flex-lg-row flex-column">
                       <div class="flex-grow-1">
-                          <h4 class="fs-16 mb-1">Overall Sales Update</h4>
+                          <h4 class="fs-16 mb-1">Search Bus</h4>
                       </div>
                   </div>
                     {{-- end card header --}}
@@ -22,114 +22,43 @@
             </div>
             {{--end row--}}
 
-            <div class="row">
-
-              <div class="col-xl-3 col-md-6">
-
-                {{-- card --}}
-                <div class="card card-animate">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-
-                      <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                          Today's sales
-                        </p>
-                      </div>
-
-
-                    </div>
-                    <div class="d-flex align-items-end justify-content-between mt-4">
-                      <div>
-                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                         $ {{$todaySaleAmount}} K
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  {{-- end card body --}}
-                </div>
-                {{-- end card --}}
-
-              </div>
-
-              <div class="col-xl-3 col-md-6">
-                {{-- card --}}
-                <div class="card card-animate">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-
-                      <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                          Yesterday sales
-                        </p>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-end justify-content-between mt-4">
-                      <div>
-                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                         $ {{$yesterdaySaleAmount}} K
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  {{-- end card body --}}
-                </div>
-                {{-- end card --}}
-
-              </div>
-              <div class="col-xl-3 col-md-6">
-                {{-- card --}}
-                <div class="card card-animate">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-
-                      <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                          This Month sales
-                        </p>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-end justify-content-between mt-4">
-                      <div>
-                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                         $ {{$thisMonthSaleAmount}} K
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  {{-- end card body --}}
-                </div>
-                {{-- end card --}}
-
-              </div>
-              <div class="col-xl-3 col-md-6">
-                {{-- card --}}
-                <div class="card card-animate">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center">
-
-                      <div class="flex-grow-1 overflow-hidden">
-                        <p class="text-uppercase fw-medium text-muted text-truncate mb-0">
-                          This Year sales
-                        </p>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-end justify-content-between mt-4">
-                      <div>
-                        <h4 class="fs-22 fw-semibold ff-secondary mb-4">
-                         $ {{$thisYearSaleAmount}} K
-                        </h4>
-                      </div>
-                    </div>
-                  </div>
-                  {{-- end card body --}}
-                </div>
-                {{-- end card --}}
-
-              </div>
-              {{-- end col --}}
+            @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
+            @endif
+              
+              <div class="row mb-3 pb-1 pt-5">
+                <div class="col-1">
+
+                </div>
+                <div class="col-6">
+                    <form action="{{ route('admin.trip.searhBus')}}" method="GET">
+                      @csrf
+                        <div class="mb-3">
+                            <label for="from" class="form-label">From</label>
+                            <input type="text" class="form-control" value="{{ old('from')}}" id="from" name="from" placeholder="Enter City">
+                        </div>
+                        <div class="mb-3">
+                            <label for="to" class="form-label">To</label>
+                            <input type="text" class="form-control" value="{{ old('to')}}" id="to" name="to" placeholder="Enter City">
+                        </div>
+                        <div class="mb-3">
+                          <label for="tdate" class="form-label">Date</label>
+                          <input type="date" class="form-control" name="date" value="{{ old('to')}}">
+                      </div>
+                        <div class="text-end">
+                            <button type="submit" class="btn btn-primary form-control">Search Bus</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-5">
+
+                </div>
+                {{--end col--}}
+              </div>
+
+            
             {{-- end row--}}
 
 
